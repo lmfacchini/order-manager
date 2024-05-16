@@ -1,13 +1,16 @@
 package com.order.manager.domain;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
 @Data
 @Entity
 @Table(name = "itm_ordr")
+@NoArgsConstructor
 public class OrderItem {
 
     @Id
@@ -29,6 +32,13 @@ public class OrderItem {
 
     @Column(name = "sb_ttl", nullable = false, scale = 2, precision = 7)
     private BigDecimal subTotal;
+
+
+    public OrderItem(String productName, BigDecimal unitaryValue, BigDecimal amount) {
+        this.productName = productName;
+        this.unitaryValue = unitaryValue;
+        this.amount = amount;
+    }
 
     @PrePersist
     public void prePersist(){

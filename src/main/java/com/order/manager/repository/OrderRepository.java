@@ -8,7 +8,7 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
-    Stream<Order> findByOrderNumber(String orderNumber);
+    Optional<Order> findByOrderNumber(String orderNumber);
 
     Stream<Order> findByCreated(LocalDateTime created);
 }

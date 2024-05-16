@@ -1,6 +1,6 @@
 type Query {
     orders(orderNumber: String, orderCreated: String): [Order]
-    order(id: ID!): [Order]
+    order(id: ID!): Order
 }
 
 type Order{
@@ -8,13 +8,14 @@ type Order{
     orderNumber: String!
     created: String!
     clientCode: String!
-
+    subTotal: Float!
     items: [OrderItem]!
 }
 
 type OrderItem{
     productName: String!
     unitaryValue: Float!
+    subTotal: Float!
     amount: Float!
 }
 

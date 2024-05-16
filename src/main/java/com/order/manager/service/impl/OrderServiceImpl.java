@@ -29,12 +29,16 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderDto processOrder(OrderDto dto) {
-        Order order = new Order();
+
         if(!CLIENTS.contains(dto.getClientCode())){
             throw new BusinessException("Client not found!");
         }
 
+        if(repository.findByOrderNumber(dto.getOrderNumber()).isPresent()){
+            throw new BusinessException("Order number already exists.!");
+        }
 
+        Order order = new Order();
         order.setOrderNumber(dto.getOrderNumber());
         order.setClientCode(dto.getClientCode());
         double subtotal = dto.getItems().stream().mapToDouble(item->{
@@ -64,7 +68,8 @@ public class OrderServiceImpl implements OrderService {
         if(StringUtils.isBlank(orderNumber) && created == null){
             return repository.findAll().stream().map(this::parse).toList();
         }else if(StringUtils.isNotBlank(orderNumber)){
-            return repository.findByOrderNumber(orderNumber).map(this::parse).toList();
+            Optional<Order> optional = repository.findByOrderNumber(orderNumber);
+            return optional.isPresent()?List.of(parse(optional.get())):List.of();
         }else{
             return repository.findByCreated(created).map(this::parse).toList();
         }
@@ -92,6 +97,7 @@ public class OrderServiceImpl implements OrderService {
         OrderItem item = new OrderItem();
         item.setAmount(dto.getAmount() == null ? BigDecimal.ONE : dto.getAmount());
         item.setProductName(dto.getProductName());
+        item.setSubTotal(dto.getSubTotal());
         item.setUnitaryValue(dto.getUnitaryValue());
 
         return item;

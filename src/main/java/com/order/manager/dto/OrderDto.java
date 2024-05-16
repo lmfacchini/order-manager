@@ -20,14 +20,17 @@ public class OrderDto {
     private Long id;
 
     @NotBlank
+    @Size(max = 6)
     private String orderNumber;
 
 
     private LocalDateTime created;
 
     @NotBlank
+    @Size(max = 6)
     private String clientCode;
 
+    @Null
     private BigDecimal subTotal;
 
     @NotEmpty

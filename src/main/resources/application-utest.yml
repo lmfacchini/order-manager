@@ -1,0 +1,21 @@
+# File similar to the default. This was done so that the default is not stuck in the same file for unit tests.
+spring:
+  application:
+    name: "Order Manager"
+  datasource:
+    url: "jdbc:h2:mem:testdb"
+    username: "sa"
+    password: "password"
+    driver-class-name: "org.h2.Driver"
+
+  jpa:
+    database-platform: "org.hibernate.dialect.H2Dialect"
+    hibernate:
+      ddl-auto: "create-drop"
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+graphql:
+  servlet:
+    exception-handlers-enabled: true

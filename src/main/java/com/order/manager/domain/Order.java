@@ -25,7 +25,7 @@ public class Order {
     private String orderNumber;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "crtd", nullable = false, columnDefinition = "")
+    @Column(name = "crtd", nullable = false)
     private LocalDateTime created;
 
     @Column(name = "clnt_cde", length = 6, nullable = false)
@@ -45,5 +45,8 @@ public class Order {
     @PrePersist
     public void prePersist(){
         created = created == null ? LocalDateTime.now() : created;
+        items.forEach(item->item.setOrder(this));
     }
+
+
 }

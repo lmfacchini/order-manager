@@ -3,6 +3,7 @@ package com.order.manager.resource.impl;
 import com.order.manager.dto.OrderDto;
 import com.order.manager.resource.OrderResource;
 import com.order.manager.service.OrderService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,13 +26,13 @@ public class OrderXmlResource extends OrderResource {
 
 
     @PostMapping(produces={APPLICATION_XML_VALUE, TEXT_XML_VALUE}, consumes = {APPLICATION_XML_VALUE, TEXT_XML_VALUE})
-    public ResponseEntity<OrderDto> createOrder(OrderDto order){
+    public ResponseEntity<OrderDto> createOrder(@Valid @RequestBody OrderDto order){
         order = super.processOrder(order);
-        return ResponseEntity.created(URI.create("/order/xml/" + order.getId())).body(super.processOrder(order));
+        return ResponseEntity.created(URI.create("/order/xml/" + order.getId())).body(order);
     }
 
     @GetMapping(produces={APPLICATION_XML_VALUE, TEXT_XML_VALUE})
-    public ResponseEntity<List<OrderDto>> orders(String orderNumber, LocalDateTime orderCreated) {
+    public ResponseEntity<List<OrderDto>> orders(@RequestParam(required = false) String orderNumber, @RequestParam(required = false) LocalDateTime orderCreated) {
         return ResponseEntity.ok(super.searchOrders(orderNumber, orderCreated));
     }
 

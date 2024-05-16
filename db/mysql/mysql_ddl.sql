@@ -12,7 +12,6 @@ create table itm_ordr(
      nm_prdct varchar(100) not null,
      un_vle numeric(7,2) not null,
      amnt numeric(7,2) not null,
-     crtd TIMESTAMP not null,
      ordr_id BIGINT not null,
      sb_ttl numeric(7,2) not null,
      FOREIGN KEY (ordr_id) REFERENCES ordr(id)

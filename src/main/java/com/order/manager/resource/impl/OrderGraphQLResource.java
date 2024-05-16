@@ -24,7 +24,7 @@ public class OrderGraphQLResource extends OrderResource {
     }
 
     @QueryMapping
-    List<OrderDto> orders(@Argument String orderNumber,
+    public List<OrderDto> orders(@Argument String orderNumber,
                           @Argument LocalDateTime orderCreated){
         return super.searchOrders(orderNumber, orderCreated);
     }
