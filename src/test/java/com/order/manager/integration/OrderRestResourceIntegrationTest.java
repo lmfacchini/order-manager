@@ -25,7 +25,7 @@ public class OrderRestResourceIntegrationTest {
 
     @Test
     public void createOrderTest()throws Exception{
-        String jsonRequest = "{\"orderNumber\": \"555\",\"created\": \"2024-05-15T10:30:00\",\"clientCode\": \"10\",\"items\": [{\"productName\": \"Product Test\",\"unitaryValue\": 5.67,\"amount\": 3 }]}";
+        String jsonRequest = "{\"orderNumber\": \"5525\",\"created\": \"2024-05-15T10:30:00\",\"clientCode\": \"10\",\"items\": [{\"productName\": \"Product Test\",\"unitaryValue\": 5.67,\"amount\": 3 }]}";
         mockMvc.perform(post("/order/rest")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonRequest))

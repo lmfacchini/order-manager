@@ -45,7 +45,7 @@ public class OrderServiceTest {
     @Test
     public void processOrderTest(){
         OrderDto order = new OrderDto();
-        order.setOrderNumber("23");
+        order.setOrderNumber("253");
         order.setClientCode("8");
         order.setItems(List.of(new OrderItemDto(1L,"Product Test", BigDecimal.TEN,BigDecimal.ONE,BigDecimal.TEN)));
 

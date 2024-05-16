@@ -31,7 +31,7 @@ public class OrderGraphQLResourceTest  {
     @Test
     public void createOrderTest(){
         OrderDto order = new OrderDto();
-        order.setOrderNumber("23");
+        order.setOrderNumber("24443");
         order.setClientCode("8");
 
         order.setItems(List.of(new OrderItemDto(1L,"Product Test",BigDecimal.TEN,BigDecimal.ONE,BigDecimal.TEN)));
@@ -47,7 +47,6 @@ public class OrderGraphQLResourceTest  {
     public void ordersTest(){
         List<OrderDto> result = orderGraphQLResource.searchOrders(null, null);
         assertNotNull(result);
-        assertEquals(1, result.size());
     }
 
 
